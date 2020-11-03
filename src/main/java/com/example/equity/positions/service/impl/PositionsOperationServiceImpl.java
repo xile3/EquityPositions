@@ -84,6 +84,7 @@ public class PositionsOperationServiceImpl implements PositionsOperationService 
   /**
    * 更新记录 做插入记录操作
    */
+  @Transactional(rollbackFor = Exception.class)
   @Override
   public EquityPositionsDTO update(EquityPositionsDTO dto) {
     String actionType = "CANCEL";
