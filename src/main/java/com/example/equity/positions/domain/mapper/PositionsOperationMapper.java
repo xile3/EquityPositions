@@ -24,10 +24,9 @@ public interface PositionsOperationMapper {
   /**
    * 判断该维度下是否有记录,返回结果>0则有记录`
    * @param securityCode
-   * @param operationType
    * @return
    */
-  SharesTradeRecords selectByCondition(@Param("securityCode") String securityCode,@Param("operationType") String operationType);
+  SharesTradeRecords selectByCondition(@Param("securityCode") String securityCode);
 
   /**
    * 按securityCode分组统计

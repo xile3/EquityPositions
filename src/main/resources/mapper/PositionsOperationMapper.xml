@@ -8,7 +8,7 @@
      (select max(version) from SHARES_TRADE_RECORDS str2 where str2.security_code=#{securityCode}) as maxVersion
 
     from SHARES_TRADE_RECORDS str
-    where str.security_code=#{securityCode} and str.operation_type=#{operationType} order by version desc limit 1
+    where str.security_code=#{securityCode} and str.action_type='INSERT' order by version desc limit 1
   </select>
   <select id="getStatisticsByGroup" resultType="com.example.equity.positions.domain.entity.SharesTradeRecords">
     SELECT str.security_code,

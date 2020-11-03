@@ -21,9 +21,9 @@ class PositionsOperationServiceImplTest {
   @Test
   void insert() {
     EquityPositionsDTO equityPositionsDTO = new EquityPositionsDTO();
-    equityPositionsDTO.setOperationType("Buy");
-    equityPositionsDTO.setSecurityCode("INF");
-    equityPositionsDTO.setQuantity(15L);
+    equityPositionsDTO.setOperationType("Sell");
+    equityPositionsDTO.setSecurityCode("ITC");
+    equityPositionsDTO.setQuantity(40L);
     EquityPositionsDTO dto = positionsOperationService.insert(equityPositionsDTO);
     log.info("认购操作返回结果:{}", JSON.toJSONString(dto));
 

@@ -40,9 +40,9 @@ class PositionsOperationControllerTest {
   void save() throws Exception {
 
     EquityPositionsDTO equityPositionsDTO = new EquityPositionsDTO();
-    equityPositionsDTO.setOperationType("Buy");
+    equityPositionsDTO.setOperationType("Sell");
     equityPositionsDTO.setSecurityCode("INF");
-    equityPositionsDTO.setQuantity(15L);
+    equityPositionsDTO.setQuantity(20L);
 
     MvcResult mvcResult  = mockMvc.perform(MockMvcRequestBuilders.post("/equ/positions/save")
             .accept(MediaType.APPLICATION_JSON)
@@ -64,7 +64,7 @@ class PositionsOperationControllerTest {
   @Test
   void update() throws Exception {
     EquityPositionsDTO equityPositionsDTO = new EquityPositionsDTO();
-    equityPositionsDTO.setTransactionId(3L);
+    equityPositionsDTO.setTransactionId(6L);
     equityPositionsDTO.setActionType("CANCEL");
     MvcResult mvcResult  = mockMvc.perform(MockMvcRequestBuilders.post("/equ/positions/update")
         .accept(MediaType.APPLICATION_JSON)

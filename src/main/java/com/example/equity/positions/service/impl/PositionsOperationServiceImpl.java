@@ -40,7 +40,7 @@ public class PositionsOperationServiceImpl implements PositionsOperationService 
 
     SharesTradeRecords entity = new SharesTradeRecords();
     createBean(dto,entity);
-    SharesTradeRecords resultEntity = positionsOperationMapper.selectByCondition(dto.getSecurityCode(),dto.getOperationType());
+    SharesTradeRecords resultEntity = positionsOperationMapper.selectByCondition(dto.getSecurityCode());
     log.info("认购操作，查询现有记录版本,入参:{},{},返回结果:{}",dto.getSecurityCode(),dto.getOperationType(), JSON.toJSONString(resultEntity));
 
     String operationType = "Sell";
