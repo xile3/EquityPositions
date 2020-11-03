@@ -65,7 +65,7 @@ public class PositionsOperationServiceImpl implements PositionsOperationService 
       }
     }else {
       if (operationType.equals(dto.getOperationType())) {
-        throw new CommonException("您还没有持有，不能做卖出操作!");
+        throw new CommonException("您还没有持有，请先做购买操作，不能做卖出操作!");
       }
       // 初始，无记录情况，直接插入记录
       entity.setTradeId(1L);
