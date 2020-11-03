@@ -18,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
@@ -35,6 +36,7 @@ public class PositionsOperationServiceImpl implements PositionsOperationService 
   /**
    * 创建记录
    */
+  @Transactional(rollbackFor = Exception.class)
   @Override
   public EquityPositionsDTO insert(EquityPositionsDTO dto) {
 
