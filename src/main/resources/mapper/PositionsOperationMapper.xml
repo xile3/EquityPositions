@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.equity.positions.domain.mapper.PositionsOperationMapper">
+
+  <select id="selectByCondition" resultType="com.example.equity.positions.domain.entity.SharesTradeRecords">
+    select str.*,
+     (select max(trade_Id) from SHARES_TRADE_RECORDS str1 where str1.security_code=#{securityCode}) as maxTradeId,
+     (select max(version) from SHARES_TRADE_RECORDS str2 where str2.security_code=#{securityCode}) as maxVersion
+
+    from SHARES_TRADE_RECORDS str
+    where str.security_code=#{securityCode} and str.operation_type=#{operationType} order by version desc limit 1
+  </select>
+  <select id="getStatisticsByGroup" resultType="com.example.equity.positions.domain.entity.SharesTradeRecords">
+    SELECT str.security_code,
+    CASEWHEN(sum(
+    CASEWHEN(str.OPERATION_TYPE='Sell',str.quantity*-1,str.quantity))&lt;0,0,sum(
+    CASEWHEN(str.OPERATION_TYPE='Sell',str.quantity*-1,str.quantity))) as sumQuantity
+
+    FROM SHARES_TRADE_RECORDS str group by security_code
+  </select>
+  <insert id="insert" parameterType="com.example.equity.positions.domain.entity.SharesTradeRecords">
+    INSERT INTO SHARES_TRADE_RECORDS
+      (
+      trade_Id,
+      version,
+      security_code,
+      quantity,
+      action_type,
+      operation_type
+      )
+    SELECT
+      trade_Id,
+      version,
+      security_code,
+    quantity,
+      action_type,
+      operation_type
+    FROM SHARES_TRADE_RECORDS t2
+    WHERE t2.modelId=#{modelId} AND t2.template_form_Id=#{templateFormId} AND t2.sysId=#{sysId}
+      and not exists (SELECT 1 FROM wf_template_form_instance t3 where  t3.formInstanceId = #{formInstanceId} LIMIT 1)
+
+  </insert>
+</mapper>
