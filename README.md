@@ -17,7 +17,7 @@ The transactions can arrive in any sequence
   2.1. 选中(这里已将要取消的记录主键Id返回)记录后，做取消操作，此时只将应记录actionType修改为CANCEL
 <br>
 ########## 设计:
-1.因新增，更新和取消tradeId不变，因此，在插入记录时，先根据SecurityCode、operationType(Buy/Sell)查找出对应记录，根据version倒序,limit 1
+1.因新增、更新、取消tradeId不变，因此，在插入记录时，先根据SecurityCode、actionType(INSERT)查找出对应记录，根据version倒序,limit 1
   同时统计出SecurityCode对应记录中，tradeId、version的最大值用来计算新的记录的tradeId和version值。
   1.1.如果该维度查询的记录为空，则新增一条Insert,前提是operationType=Buy
   1.2.有记录,则新增一条，同时设置actionType为UPDATE且version+1
