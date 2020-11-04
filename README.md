@@ -29,8 +29,12 @@ The transactions can arrive in any sequence
 ########### 数据库建表JPA自动创建
 
 ### 数据防护(这里只列举防护项)
-1.用户请求传入的任何参数必须做有效性验证
-2.用户鉴权
+1.用户鉴权
+2.请求传入参数做有效性验证
+3.水平权限校验
+4.控制page size 大小
+5.防SQL 注入
+
 
 ## 工程结构图(整体结构)
 position root根节点

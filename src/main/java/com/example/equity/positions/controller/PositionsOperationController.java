@@ -33,6 +33,7 @@ public class PositionsOperationController {
    */
   @PostMapping("/save")
   public ResponseEntity<EquityPositionsDTO> save(@RequestBody EquityPositionsDTO equityPositionsDTO) {
+    //TODO 用户鉴权
     log.info("equity positions insert data:{}", JSON.toJSONString(equityPositionsDTO));
     return ResponseEntity.ok(this.positionsOperationService.insert(equityPositionsDTO));
   }
@@ -44,6 +45,7 @@ public class PositionsOperationController {
    */
   @PostMapping("/update")
   public ResponseEntity<EquityPositionsDTO> update(@RequestBody EquityPositionsDTO equityPositionsDTO) {
+    //TODO 用户鉴权
     log.info("equity positions insert data:{}", JSON.toJSONString(equityPositionsDTO));
     return ResponseEntity.ok(this.positionsOperationService.update(equityPositionsDTO));
   }
@@ -54,6 +56,7 @@ public class PositionsOperationController {
    */
   @PostMapping
   public ResponseEntity<List<EquityPositionsDTO>> list() {
+    //TODO 用户鉴权
     log.info("equity positions get records");
     return ResponseEntity.ok(this.positionsOperationService.getStatisticsByGroup());
   }
